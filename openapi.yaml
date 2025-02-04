@@ -1,0 +1,338 @@
+openapi: 3.0.3
+info:
+  title: API de Gestão de Pedidos
+  description: API REST para gerenciamento de clientes, pedidos e produtos.
+  version: "1.0.0"
+servers:
+  - url: http://localhost:3000
+paths:
+  /clientes:
+    get:
+      summary: Lista todos os clientes
+      description: Retorna a lista de clientes. Aceita filtro opcional por nome.
+      parameters:
+        - in: query
+          name: nome
+          schema:
+            type: string
+          description: Filtra clientes que contenham o nome informado.
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+    post:
+      summary: Cria um novo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '201':
+          description: Cliente criado com sucesso
+  /clientes/{clienteId}:
+    get:
+      summary: Retorna os detalhes de um cliente
+      parameters:
+        - in: path
+          name: clienteId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Dados do cliente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+    put:
+      summary: Atualiza os dados de um cliente
+      parameters:
+        - in: path
+          name: clienteId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '200':
+          description: Cliente atualizado
+    delete:
+      summary: Remove um cliente
+      parameters:
+        - in: path
+          name: clienteId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Cliente removido com sucesso
+
+  /pedidos:
+    get:
+      summary: Lista todos os pedidos
+      parameters:
+        - in: query
+          name: data
+          schema:
+            type: string
+            format: date
+          description: Filtra pedidos por data.
+      responses:
+        '200':
+          description: Lista de pedidos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+    post:
+      summary: Cria um novo pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+      responses:
+        '201':
+          description: Pedido criado
+
+  /pedidos/{pedidoId}:
+    get:
+      summary: Detalha um pedido
+      parameters:
+        - in: path
+          name: pedidoId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Dados do pedido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pedido'
+    put:
+      summary: Atualiza um pedido
+      parameters:
+        - in: path
+          name: pedidoId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+      responses:
+        '200':
+          description: Pedido atualizado
+    delete:
+      summary: Remove um pedido
+      parameters:
+        - in: path
+          name: pedidoId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Pedido removido
+
+  /pedidos/{pedidoId}/produtos:
+    get:
+      summary: Lista os produtos de um pedido
+      parameters:
+        - in: path
+          name: pedidoId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lista de produtos no pedido
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+    post:
+      summary: Adiciona um produto a um pedido
+      parameters:
+        - in: path
+          name: pedidoId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                produtoId:
+                  type: integer
+      responses:
+        '201':
+          description: Produto adicionado ao pedido
+
+  /pedidos/{pedidoId}/produtos/{produtoId}:
+    delete:
+      summary: Remove um produto de um pedido
+      parameters:
+        - in: path
+          name: pedidoId
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: produtoId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Produto removido do pedido
+
+  /produtos:
+    get:
+      summary: Lista todos os produtos
+      parameters:
+        - in: query
+          name: categoria
+          schema:
+            type: string
+          description: Filtra produtos por categoria.
+      responses:
+        '200':
+          description: Lista de produtos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+    post:
+      summary: Cria um novo produto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        '201':
+          description: Produto criado
+
+  /produtos/{produtoId}:
+    get:
+      summary: Detalha um produto
+      parameters:
+        - in: path
+          name: produtoId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Dados do produto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+    put:
+      summary: Atualiza um produto
+      parameters:
+        - in: path
+          name: produtoId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        '200':
+          description: Produto atualizado
+    delete:
+      summary: Remove um produto
+      parameters:
+        - in: path
+          name: produtoId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Produto removido
+
+components:
+  schemas:
+    Cliente:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        email:
+          type: string
+      required:
+        - nome
+        - email
+    Pedido:
+      type: object
+      properties:
+        id:
+          type: integer
+        clienteId:
+          type: integer
+        data:
+          type: string
+          format: date
+        status:
+          type: string
+      required:
+        - clienteId
+        - data
+        - status
+    Produto:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        descricao:
+          type: string
+        preco:
+          type: number
+          format: float
+        categoria:
+          type: string
+      required:
+        - nome
+        - preco
