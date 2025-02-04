@@ -2,7 +2,7 @@ Relatório Final - API REST Design-First
 
 📌 Introdução
 
-Este relatório descreve o desenvolvimento de uma API RESTful seguindo a abordagem Design-First, utilizando Node.js, Express e MySQL. O projeto tem como objetivo gerenciar usuários, posts, comentários e tags, permitindo operações de CRUD (Create, Read, Update, Delete) para cada entidade.
+Este relatório descreve o desenvolvimento de uma API RESTful seguindo a abordagem Design-First, utilizando Node.js, Express e MySQL. O projeto tem como objetivo gerenciar usuários, posts, comentários e tags, permitindo operações de CRUD (Get, Post, Put, Delete) para cada entidade.
 
 Além disso, a API foi desenvolvida para ser containerizada com Docker, garantindo facilidade de configuração e implantação.
 
