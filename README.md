@@ -52,23 +52,22 @@ Tags (tags):
 
 📌 Principais Funcionalidades
 
-A API suporta as seguintes operações:
-
-Gerenciamento de Usuários (/users)
-Criar um usuário (POST /users)
-Listar usuários (GET /users)
-Atualizar um usuário (PUT /users/:id)
-Remover um usuário (DELETE /users/:id)
-Gerenciamento de Posts (/posts)
-Criar um post (POST /posts)
-Listar posts (GET /posts)
-Atualizar um post (PUT /posts/:id)
-Remover um post (DELETE /posts/:id)
-Gerenciamento de Comentários (/comments)
-Criar um comentário (POST /comments)
-Listar comentários (GET /comments)
-Gerenciamento de Tags (/tags)
-Criar uma tag (POST /tags)
-Listar todas as tags (GET /tags)
-Relacionamento Post-Tags (/post_tags)
+- A API suporta as seguintes operações:
+- Gerenciamento de Usuários (/users)
+- Criar um usuário (POST /users)
+- Listar usuários (GET /users)
+- Atualizar um usuário (PUT /users/:id)
+- Remover um usuário (DELETE /users/:id)
+- Gerenciamento de Posts (/posts)
+- Criar um post (POST /posts)
+- Listar posts (GET /posts)
+- Atualizar um post (PUT /posts/:id)
+- Remover um post (DELETE /posts/:id)
+- Gerenciamento de Comentários (/comments)
+- Criar um comentário (POST /comments)
+- Listar comentários (GET /comments)
+- Gerenciamento de Tags (/tags)
+- Criar uma tag (POST /tags)
+- Listar todas as tags (GET /tags)
+- Relacionamento Post-Tags (/post_tags)
 
